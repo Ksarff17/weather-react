@@ -6,10 +6,12 @@ import Footer from "./Footer";
 function App() {
   return (
       <div className="App">
-        <section className="container">
+        <div className="container">
+        <section>
           <Weather />
         </section>
         <Footer />
+        </div>
       </div>
   );
 }
