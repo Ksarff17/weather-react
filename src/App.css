@@ -1,15 +1,26 @@
 .App {
-  background-color: rgb(237, 237, 237, 0.6);
   font-family: "Poppins", sans-serif;
   text-align: center;
   padding: 50px 10px;
+  margin: 30px auto;
 }
 
-.container {
-  background-color: #fff;
+.App .container {
+  background-color: rgb(237, 237, 237, 0.6);;
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   max-width: 600px;
-  margin: 40px auto;
   padding: 20px;
 }
+.App footer{
+  color: rgb(0, 0, 0, 0.5);
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  margin-top:20px;
+}
+.App footer a{
+    color: rgb(21, 166, 130);
+    text-decoration: none;
+}
+

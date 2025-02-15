@@ -7,11 +7,10 @@ function App() {
   return (
       <div className="App">
         <div className="container">
-        <section>
           <Weather />
-        </section>
-        <Footer />
+          
         </div>
+        <Footer />
       </div>
   );
 }

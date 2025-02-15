@@ -31,29 +31,34 @@ export default function Search() {
     }
   
     let form = (
-      <div>
+  
       <form onSubmit={handleSubmit} className="searchForm">
         <div className="row">
           <div className="col-9">
-        <input type="search" placeholder="Enter a city" onChange={updateCity} className="city" />
-        </div>
-        <div className="col-3">
-        <button type="submit" className="search">Search</button>
-        </div>
+            <input type="search" 
+            autoFocus="on"
+            placeholder="Enter a city" 
+            onChange={updateCity} 
+            className="city w-100" />
+          </div>
+          <div className="col-3">
+            <input type="submit" 
+            value="Search" 
+            className="btn btn-success w-100"/>
+          </div>
         </div>
       </form>
-      </div>
+      
     );
   
     if (loaded) {
       return (
-        <div>
+        <div className="Weather">
           {form}
           <main>
-            <div className="current-weather">
               <div className="row">
                 <div className="col-12">
-                <h1 className="current-city">{weather.city}</h1>
+                <h1>{weather.city}</h1>
                 <ul className="current-details">
                   <li className="currentDate">Monday Feb. 15th, 2025</li>
                   <li className="description"> {weather.description}</li>
@@ -76,8 +81,6 @@ export default function Search() {
                   </ul>
                 </div>
                 </div>
-            </div>
-            <div className="weekly-forecast"></div>
           </main>
         </div>
       );
