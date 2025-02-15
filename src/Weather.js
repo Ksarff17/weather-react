@@ -15,7 +15,8 @@ export default function Search() {
         humidity: Math.round(response.data.main.humidity),
         wind: Math.round(response.data.wind.speed),
         description: response.data.weather[0].description,
-        icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+        icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+        city: response.data.name,
 
       });
     }
@@ -32,8 +33,14 @@ export default function Search() {
     let form = (
       <div>
       <form onSubmit={handleSubmit} className="searchForm">
+        <div className="row">
+          <div className="col-9">
         <input type="search" placeholder="Enter a city" onChange={updateCity} className="city" />
+        </div>
+        <div className="col-3">
         <button type="submit" className="search">Search</button>
+        </div>
+        </div>
       </form>
       </div>
     );
@@ -45,23 +52,30 @@ export default function Search() {
           <main>
             <div className="current-weather">
               <div className="row">
-                <h1 className="current-city">{city}</h1>
+                <div className="col-12">
+                <h1 className="current-city">{weather.city}</h1>
                 <ul className="current-details">
-                  <li className="currentDate">Monday Feb. 10th, 2025</li>
+                  <li className="currentDate">Monday Feb. 15th, 2025</li>
                   <li className="description"> {weather.description}</li>
-                  <li>Humidity: <strong>{weather.humidity}% </strong></li>
-                  <li>Wind:<strong> {weather.wind}mph</strong></li>
                 </ul>
-              </div>
-              <div className="row">
-                <div className="current-city-weather">
-                  <div className="weather-icon">
-            <img src={weather.icon} alt={weather.description} />
-          </div>
-                  <div className="currentTemp">{weather.temperature}<span className="currentTemp-unit">°F</span></div>
-                
                 </div>
-              </div>
+                <div className="col-6">
+                  <div className="row">
+                  <div className="col-3">
+                      <img src={weather.icon} alt={weather.description} className="weather-icon" />
+                  </div>
+                  <div className="col-9">
+                  <div className="currentTemp">{weather.temperature}<span className="currentTemp-unit">°F</span></div>
+                  </div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <ul className="current-details">
+                    <li>Humidity: <strong>{weather.humidity}% </strong></li>
+                    <li>Wind:<strong> {weather.wind}mph</strong></li>
+                  </ul>
+                </div>
+                </div>
             </div>
             <div className="weekly-forecast"></div>
           </main>

@@ -2,9 +2,9 @@ main {
     padding: 30px 0;
   }
   .searchForm .city {
-    width: 50%;
+ 
     padding: 10px 20px;
-    margin: 0 20px;
+    
     font-size: 16px;
     border: none;
     border-radius: 3px;
@@ -16,15 +16,12 @@ main {
     border: none;
     border-radius: 3px;
     color: #fff;
-    padding: 11px 20px;
+    padding: 10px 20px;
     font-weight: bold;
-    outline: none;
-    width: 20%;
+    
   }
 
 .current-weather {
-    display: flex;
-    justify-content: space-between;
     text-align: left;
   }
 .current-city {
@@ -42,18 +39,13 @@ main {
   .current-details strong {
     color: rgb(21, 166, 130);
   }
-  
-  .current-city-weather {
-    display: flex;
-    justify-content: space-between;
-  }
+
   .weather-icon {
     position: relative;
     top: -10px;
-    width: 60px;
-    height: 60px;
-    margin-right: 35px;
-    text-align: center;
+    justify-content: center;
+    
+    
   }
   .currentTemp {
     font-size: 60px;
@@ -61,5 +53,4 @@ main {
   .currentTemp-unit{
     font-size: 30px;
     position: relative;
-    top:-20px;
   }
