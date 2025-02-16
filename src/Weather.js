@@ -11,21 +11,24 @@ export default function Search() {
     function displayWeather(response) {
       setLoaded(true);
       setWeather({
-        temperature: Math.round(response.data.main.temp),
-        humidity: Math.round(response.data.main.humidity),
+        temperature: Math.round(response.data.temperature.current),
+        humidity: Math.round(response.data.temperature.humidity),
         wind: Math.round(response.data.wind.speed),
-        description: response.data.weather[0].description,
-        icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-        city: response.data.name,
-
-      });
+        description: response.data.condition.description,
+        icon: response.data.condition.icon_url,
+        city: response.data.city,
+      })
+      
+      ;
     }
   
     function handleSubmit(event) {
       event.preventDefault();
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=ed238469f9b5e9d801834270e65449bc&units=imperial`;
+      let apiKey ='7o60e48082t80b65afac13511e68bed5'
+      let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
       axios.get(url).then(displayWeather);
-    }
+      
+    } 
     function updateCity(event) {
       setCity(event.target.value);
     }
