@@ -1,15 +1,16 @@
 import React, {useState} from "react"
-import "./Weather.css";
+import FormattedDate from "./FormattedDate"
+import "./Weather.css"
 import axios from "axios"
 
 
 export default function Search() {
     let [city, setCity] = useState("");
-    let [loaded, setLoaded] = useState(false);
+    let [ready, setReady] = useState(false);
     let [weather, setWeather] = useState("");
   
     function displayWeather(response) {
-      setLoaded(true);
+      setReady(true);
       setWeather({
         temperature: Math.round(response.data.temperature.current),
         humidity: Math.round(response.data.temperature.humidity),
@@ -17,11 +18,10 @@ export default function Search() {
         description: response.data.condition.description,
         icon: response.data.condition.icon_url,
         city: response.data.city,
-      })
+        date: new Date(response.data.time * 1000),
+      });
       
-      ;
     }
-  
     function handleSubmit(event) {
       event.preventDefault();
       let apiKey ='7o60e48082t80b65afac13511e68bed5'
@@ -29,6 +29,8 @@ export default function Search() {
       axios.get(url).then(displayWeather);
       
     } 
+  
+   
     function updateCity(event) {
       setCity(event.target.value);
     }
@@ -54,15 +56,17 @@ export default function Search() {
       
     );
   
-    if (loaded) {
+    if (ready) {
       return (
         <div className="Weather">
           {form}
               <div className="row mt-3 text-start">
                 <h1>{weather.city}</h1>
                 <ul>
-                  <li className="currentDate">Monday Feb. 15th, 2025</li>
-                  <li className="description"> {weather.description}</li>
+                  <li>
+                    <FormattedDate date={weather.date}/>
+                    </li>
+                  <li className="text-capitalize"> {weather.description}</li>
                 </ul>
                 </div>
                 <div className="row">
@@ -87,7 +91,13 @@ export default function Search() {
         </div>
       );
     } else {
-      return form;
+   
+      return (
+        <div>
+          {form}
+          <h3 className="text-start">Loading...</h3>
+        </div>
+      );
     }
   }
   
