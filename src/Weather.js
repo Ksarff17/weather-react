@@ -55,33 +55,32 @@ export default function Search() {
       return (
         <div className="Weather">
           {form}
-          <main>
-              <div className="row">
-                <div className="col-12">
+              <div className="row mt-3 text-start">
                 <h1>{weather.city}</h1>
-                <ul className="current-details">
+                <ul>
                   <li className="currentDate">Monday Feb. 15th, 2025</li>
                   <li className="description"> {weather.description}</li>
                 </ul>
                 </div>
-                <div className="col-6">
-                  <div className="row">
-                  <div className="col-3">
-                      <img src={weather.icon} alt={weather.description} className="weather-icon" />
+                <div className="row">
+                  <div className="col-6">
+                    <div className="row">
+                      <div className="col-3">
+                       <img src={weather.icon} alt={weather.description} className="weather-icon" />
+                      </div>
+                      <div className="col-9 text-start">
+                        <div><span className="temperature">{weather.temperature}</span><span className="unit">°F</span></div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-9">
-                  <div className="currentTemp">{weather.temperature}<span className="currentTemp-unit">°F</span></div>
-                  </div>
-                  </div>
-                </div>
-                <div className="col-6">
+                  <div className="col-6">
                   <ul className="current-details">
                     <li>Humidity: <strong>{weather.humidity}% </strong></li>
                     <li>Wind:<strong> {weather.wind}mph</strong></li>
                   </ul>
                 </div>
                 </div>
-          </main>
+               
         </div>
       );
     } else {
