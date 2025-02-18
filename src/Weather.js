@@ -1,7 +1,7 @@
-import React, {useState} from "react"
-import FormattedDate from "./FormattedDate"
-import "./Weather.css"
-import axios from "axios"
+import React, {useState} from "react";
+import WeatherInfo from "./WeatherInfo";
+import "./Weather.css";
+import axios from "axios";
 
 
 export default function Search() {
@@ -29,14 +29,11 @@ export default function Search() {
       axios.get(url).then(displayWeather);
       
     } 
-  
-   
     function updateCity(event) {
       setCity(event.target.value);
     }
   
     let form = (
-  
       <form onSubmit={handleSubmit} className="searchForm">
         <div className="row">
           <div className="col-9">
@@ -52,42 +49,14 @@ export default function Search() {
             className="btn btn-success w-100"/>
           </div>
         </div>
-      </form>
-      
+      </form> 
     );
   
     if (ready) {
       return (
         <div className="Weather">
           {form}
-              <div className="row mt-3 text-start">
-                <h1>{weather.city}</h1>
-                <ul>
-                  <li>
-                    <FormattedDate date={weather.date}/>
-                    </li>
-                  <li className="text-capitalize"> {weather.description}</li>
-                </ul>
-                </div>
-                <div className="row">
-                  <div className="col-6">
-                    <div className="row">
-                      <div className="col-3">
-                       <img src={weather.icon} alt={weather.description} className="weather-icon" />
-                      </div>
-                      <div className="col-9 text-start">
-                        <div><span className="temperature">{weather.temperature}</span><span className="unit">°F</span></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-6">
-                  <ul className="current-details">
-                    <li>Humidity: <strong>{weather.humidity}% </strong></li>
-                    <li>Wind:<strong> {weather.wind}mph</strong></li>
-                  </ul>
-                </div>
-                </div>
-               
+          <WeatherInfo info={weather}/>  
         </div>
       );
     } else {
