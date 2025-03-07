@@ -1,32 +1,39 @@
-import React, {useState} from "react";
-import WeatherForecastDay from "./WeatherForecastDay";
+import React, {useState, useEffect} from "react";
 import "./WeatherForecast.css";
 import Axios from "axios"
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast(props){
-    let [Forecast, setForecast] = useState("");
-    let [Loaded, setLoaded] = useState(false);
+    let [forecast, setForecast] = useState(null);
+    let [loaded, setLoaded] = useState(false);
+   
 
+    useEffect(()=>{
+        setLoaded(false);
+    }, [props.location]);
 
     function handleResponse(response){
         setLoaded(true);
-        setForecast({
-            maxTemp: response.data.daily[0].temperature.maximum,
-            minTemp: response.data.daily[0].temperature.minimum,
-            iconUrl: response.data.daily[0].condition.icon_url,
-            iconDescription: response.data.daily[0].condition.icon,
-            dt: response.data.dt,
-        })
+        setForecast(response.data.daily);
+       
+        
+        
     }
 
-    if(Loaded){
+    if(loaded){
         return (
             <div className="WeatherForecast">
-                <div className ="row mt-4">
-                    <div className="col">  
-                        <WeatherForecastDay data={Forecast[0]}/>
-                        
-                    </div>  
+                <div className ="row mt-4"> 
+                    {forecast.map(function (dailyForecast, index){
+                        if (index < 5){
+                        return(
+                            <div className="col" key={index}>  
+                            <WeatherForecastDay info={dailyForecast}/>
+                        </div>  
+                        );
+                    }
+                    })}
+                       
                 </div>
             </div>
         )
@@ -36,6 +43,6 @@ export default function WeatherForecast(props){
     let apiUrl =`https://api.shecodes.io/weather/v1/forecast?query=${query}&key=${apiKey}&units=imperial`
     Axios.get(apiUrl).then(handleResponse)
 
-    return null; 
+    return null;   
 }
 }
